@@ -1,14 +1,13 @@
-//
-//  Hike.swift
-//  swift UI
-//
-//  Created by Actor on 2023/6/12.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A representation of a hike.
+*/
 
 import Foundation
 
 struct Hike: Codable, Hashable, Identifiable {
-     
     var id: Int
     var name: String
     var distance: Double
@@ -16,6 +15,7 @@ struct Hike: Codable, Hashable, Identifiable {
     var observations: [Observation]
 
     static var formatter = LengthFormatter()
+
     var distanceText: String {
         Hike.formatter
             .string(fromValue: distance, unit: .kilometer)

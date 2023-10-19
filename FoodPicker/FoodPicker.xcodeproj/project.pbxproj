@@ -11,6 +11,7 @@
 		1A6BBADA2AE0351F007A26F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BBAD92AE0351F007A26F8 /* ContentView.swift */; };
 		1A6BBADC2AE03521007A26F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BBADB2AE03521007A26F8 /* Assets.xcassets */; };
 		1A6BBADF2AE03521007A26F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BBADE2AE03521007A26F8 /* Preview Assets.xcassets */; };
+		1A6BBAE62AE11C5A007A26F8 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BBAE52AE11C5A007A26F8 /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1A6BBAD92AE0351F007A26F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A6BBADB2AE03521007A26F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A6BBADE2AE03521007A26F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1A6BBAE52AE11C5A007A26F8 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		1A6BBADD2AE03521007A26F8 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				1A6BBAE52AE11C5A007A26F8 /* Food.swift */,
 				1A6BBADE2AE03521007A26F8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -139,6 +142,7 @@
 			files = (
 				1A6BBADA2AE0351F007A26F8 /* ContentView.swift in Sources */,
 				1A6BBAD82AE0351F007A26F8 /* FoodPickerApp.swift in Sources */,
+				1A6BBAE62AE11C5A007A26F8 /* Food.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

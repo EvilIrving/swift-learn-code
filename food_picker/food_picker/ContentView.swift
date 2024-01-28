@@ -11,6 +11,7 @@ struct ContentView: View {
     let food = Food.examples
     // @State
     @State private var selectedFood: Food?
+    @State private var showInfo = false
     // body回传一个View
     var body: some View {
         ScrollView {
@@ -32,12 +33,8 @@ struct ContentView: View {
                 Text("今天吃什么?")
                     .bold()
 
-                // Color.clear // Color 是 expanding 的
-                Spacer().layoutPriority(1) // 排版优先级 
-
                 //            if selectedFood != .none {
                 if let selectedFood = selectedFood {
-                    let isShowInfo = true
                     HStack {
                         Text(selectedFood.name)
                             .font(.largeTitle)
@@ -57,37 +54,75 @@ struct ContentView: View {
                                     .animation(
                                         .easeOut(duration: 0.4))))
 
-                        Image(systemName: "info.circle.fill").foregroundColor(.secondary)
+                        Button {
+                            showInfo.toggle()
+                        } label: {
+                            Image(systemName: "info.circle.fill").foregroundColor(.secondary)
+                        }.buttonStyle(.plain)
                     }
+                    Text("热量 \(selectedFood.calorie.formatted(.number)) 大卡")
 
-                    if isShowInfo {
-                        Text("热量 \(selectedFood.calorie.formatted(.number)) 大卡")
+                    // 限制动画显示时 跳过 热量大卡 的文字
+                    // 增加一个 VStack
 
-                        HStack {
-                            VStack(spacing: 12) {
-                                Text("蛋白质").font(.title2)
-                                Text("\(selectedFood.protein.formatted(.number))g")
+                    VStack {
+                        if showInfo {
+                            Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                                GridRow {
+                                    Text("蛋白质")
+                                    Text("脂肪")
+                                    Text("碳水")
+                                }.frame(minWidth: 60)
+                                //                                .gridCellAnchor(.trailing)
+
+                                Divider().gridCellUnsizedAxes(.horizontal).padding(.horizontal, -10) // 垂直或水平是根据所处位置判断得出
+
+                                GridRow {
+                                    Text("\(selectedFood.protein.formatted(.number))g")
+                                    Text("\(selectedFood.fat.formatted(.number))g")
+                                    Text("\(selectedFood.carb.formatted(.number))g")
+                                }
                             }
+                            .font(.title3)
+                            .padding(.horizontal)
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(.systemBackground)))
 
-                            Divider().frame(width: 1).padding(.horizontal)
+                            // ipad上淡入淡出的效果不满意, 想要更有存在感
+                            .transition(.move(edge: .top).combined(with: .opacity))
 
-                            VStack(spacing: 12) {
-                                Text("脂肪").font(.title2)
-                                Text("\(selectedFood.fat.formatted(.number))g")
-                            }
-
-                            Divider().frame(width: 1).padding(.horizontal)
-
-                            VStack(spacing: 12) {
-                                Text("碳水").font(.title2)
-                                Text("\(selectedFood.carb.formatted(.number))g")
-                            }
+                            //                        HStack {
+                            //                            VStack(spacing: 12) {
+                            //                                Text("蛋白质").font(.title2)
+                            //                                Text("\(selectedFood.protein.formatted(.number))g")
+                            //                            }
+                            //
+                            //                            Divider().frame(width: 1).padding(.horizontal)
+                            //
+                            //                            VStack(spacing: 12) {
+                            //                                Text("脂肪").font(.title2)
+                            //                                Text("\(selectedFood.fat.formatted(.number))g")
+                            //                            }
+                            //
+                            //                            Divider().frame(width: 1).padding(.horizontal)
+                            //
+                            //                            VStack(spacing: 12) {
+                            //                                Text("碳水").font(.title2)
+                            //                                Text("\(selectedFood.carb.formatted(.number))g")
+                            //                            }
+                            //                        }
+                            //                        .padding(.horizontal)
+                            //                        .padding()
+                            //                        .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(.systemBackground)))
                         }
-                        .padding(.horizontal)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(.systemBackground)))
                     }
+                    .frame(maxWidth: .infinity)
+                    .clipped() // 裁剪空间
+//                    .border(.black)
                 }
+
+                // Color.clear // Color 是 expanding 的
+                Spacer().layoutPriority(1) // 排版优先级
 
                 Button {
                     withAnimation {
@@ -107,6 +142,7 @@ struct ContentView: View {
                 Button(role: .destructive) {
                     withAnimation {
                         selectedFood = .none
+                        showInfo = false
                     }
                 } label: {
                     Text("重置").frame(width: 150)
@@ -117,7 +153,9 @@ struct ContentView: View {
             .font(.title)
             .controlSize(.large)
             .buttonBorderShape(.capsule)
-
+//            .animation(.easeInOut,value: showInfo)
+            // 不要普通的动画, 要 Q 弹
+            .animation(.spring(dampingFraction: 0.55), value: showInfo)
             .animation(.easeInOut(duration: 0.6), value: selectedFood)
         }.background(Color(.secondarySystemBackground))
     }
@@ -130,10 +168,10 @@ extension ContentView {
     }
 }
 
-extension PreviewDevice {
-    static let iPad = PreviewDevice(rawValue: "iPad Pro (12.9-inch) (6th generation)")
-    static let SE = PreviewDevice(rawValue: "iPhone SE (3rd generation)")
-}
+// extension PreviewDevice {
+//    static let iPad = PreviewDevice(rawValue: "iPad Pro (12.9-inch) (6th generation)")
+//    static let SE = PreviewDevice(rawValue: "iPhone SE (3rd generation)")
+// }
 
 #Preview {
     ContentView(selectedFood: .examples.first!)
@@ -238,7 +276,7 @@ extension PreviewDevice {
    固定画面
    Group
 
-   2-2
+   2-2: 重点: 学会推断排版的规则,问:为什么会产生这样的排版结果, 才能写出高效的代码
 
    预览画面调整 & 设定 State 啟动值
    新增 icon

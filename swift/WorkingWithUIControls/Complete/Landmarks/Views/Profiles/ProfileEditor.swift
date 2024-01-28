@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-An editable profile view.
-*/
+ Abstract:
+ An editable profile view.
+ */
 
 import SwiftUI
 
@@ -13,7 +13,7 @@ struct ProfileEditor: View {
     var dateRange: ClosedRange<Date> {
         let min = Calendar.current.date(byAdding: .year, value: -1, to: profile.goalDate)!
         let max = Calendar.current.date(byAdding: .year, value: 1, to: profile.goalDate)!
-        return min...max
+        return min ... max
     }
 
     var body: some View {

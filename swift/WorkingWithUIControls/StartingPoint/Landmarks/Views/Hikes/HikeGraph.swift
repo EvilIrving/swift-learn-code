@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-The elevation, heart rate, and pace of a hike plotted on a graph.
-*/
+ Abstract:
+ The elevation, heart rate, and pace of a hike plotted on a graph.
+ */
 
 import SwiftUI
 
@@ -57,11 +57,12 @@ struct HikeGraph: View {
 }
 
 func rangeOfRanges<C: Collection>(_ ranges: C) -> Range<Double>
-    where C.Element == Range<Double> {
-    guard !ranges.isEmpty else { return 0..<0 }
+    where C.Element == Range<Double>
+{
+    guard !ranges.isEmpty else { return 0 ..< 0 }
     let low = ranges.lazy.map { $0.lowerBound }.min()!
     let high = ranges.lazy.map { $0.upperBound }.max()!
-    return low..<high
+    return low ..< high
 }
 
 func magnitude(of range: Range<Double>) -> Double {

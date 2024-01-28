@@ -1,5 +1,5 @@
 //
-//  Detail.swift
+//  LandmarkDetail.swift
 //  swift UI
 //
 //  Created by Actor on 2023/6/8.

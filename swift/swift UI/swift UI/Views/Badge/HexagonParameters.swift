@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HexagonParameters {
+enum HexagonParameters {
     struct Segment {
         let line: CGPoint
         let curve: CGPoint
@@ -15,7 +15,7 @@ struct HexagonParameters {
     }
 
     static let adjustment: CGFloat = 0.085
-    
+
     static let segments = [
         Segment(
             line: CGPoint(x: 0.60, y: 0.05),

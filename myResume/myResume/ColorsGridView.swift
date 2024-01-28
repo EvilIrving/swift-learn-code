@@ -7,35 +7,33 @@
 
 import SwiftUI
 
-struct ColorView:View {
-    var color:Color
-    
+struct ColorView: View {
+    var color: Color
+
     init(color: Color) {
         self.color = color
     }
-    
+
     var body: some View {
         Rectangle().fill(color)
             .overlay(content: {
-                Text( color.description)
+                Text(color.description)
             })
 //            .gridCellUnsizedAxes(.vertical)
     }
 }
 
-
 struct ColorsGridView: View {
     var body: some View {
-        
 //        LazyHGrid
 //        LazyVGrid
-        
+
         VStack {
-            Grid{
+            Grid {
                 GridRow {
                     ColorView(color: .pink).gridCellColumns(2)
-                    
-                    Grid{
+
+                    Grid {
                         ColorView(color: .blue)
                         ColorView(color: .purple)
                         ColorView(color: .brown)
@@ -59,9 +57,9 @@ struct ColorsGridView: View {
         }
     }
 }
-    
-    struct ColorsGridView_Previews: PreviewProvider {
-        static var previews: some View {
-            ColorsGridView()
-        }
+
+struct ColorsGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        ColorsGridView()
     }
+}

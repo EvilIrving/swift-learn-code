@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A view showing featured landmarks above a list of landmarks grouped by category.
-*/
+ Abstract:
+ A view showing featured landmarks above a list of landmarks grouped by category.
+ */
 
 import SwiftUI
 

@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A view that hosts the profile viewer and editor.
-*/
+ Abstract:
+ A view that hosts the profile viewer and editor.
+ */
 
 import SwiftUI
 

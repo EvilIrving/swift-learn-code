@@ -1,9 +1,8 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
-let maxNumber  = 10
+let maxNumber = 10
 var currentNumber = 7 // 当前值
 print("Hello, world!")
-
 
 // 好的 这是多行注释
 // 第二行
@@ -11,9 +10,8 @@ print("Hello, world!")
 let cat = "cat"
 print("cat")
 
-
-let minValue = UInt8.min  // minValue 为 0，是 UInt8 类型
-let maxValue = UInt8.max  // maxValue 为 255，是 UInt8 类型
+let minValue = UInt8.min // minValue 为 0，是 UInt8 类型
+let maxValue = UInt8.max // maxValue 为 255，是 UInt8 类型
 
 let isBool = true
 
@@ -21,9 +19,9 @@ if isBool {
     print("true")
 } else {
     print("false")
-    
 }
-let err404 = (404,"error","unused","unused")
+
+let err404 = (404, "error", "unused", "unused")
 // let (code,_) = err404
 print("status msg is \(err404.3)")
 
@@ -50,7 +48,6 @@ print("status msg is \(err404.3)")
 // } else {
 //     print("\(possibleNumber) could not be converted to an integer")
 // }
-
 
 // func makeASandwich() throws {
 //     // ...
@@ -95,7 +92,5 @@ a
 b 
 c
 """
-let sparklingHeart = "\u{1F496}"    
+let sparklingHeart = "\u{1F496}"
 print("\(sparklingHeart)")
-
-

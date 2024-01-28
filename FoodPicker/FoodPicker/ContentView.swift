@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+
 struct ContentView: View {
     @State private var selectedFood: Food?
     @State private var shouldShowTip = false
     let foods = Food.examples
     let food: [String] = ["蟹黄锅巴", "咸蛋黄锅巴", "红油抄手", "糖醋排骨", "麻辣手撕包菜", "辣炒包菜", "盐水鹅", "苋菜", "凉拌菠菜", "肉圆", "凉拌黄瓜", "鸡米花", "砂糖橘", "面条", "炒蛋", "土豆炖牛肉", "胡辣汤", "蛋炒饭", "酸菜鱼", "阳春面", "青菜肉粥", "咸鸭蛋", "莴苣", "萝卜烧肉", "芦笋炒肉", "羊肉汤"]
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -41,14 +42,14 @@ private extension ContentView {
             if selectedFood == .none {
                 Image("dinner")
                     .resizable().aspectRatio(contentMode: .fit)
-                
+
             } else {
                 Text(selectedFood!.image).font(.system(size: 200))
                     .lineLimit(1).minimumScaleFactor(0.1)
             }
         }.frame(height: 250)
     }
-    
+
     var foodNameView: some View {
         HStack {
             Text(selectedFood!.name)
@@ -57,7 +58,7 @@ private extension ContentView {
                 .transition(.delayInsertionOpacity)
                 .transition(.scale.combined(with: .slide))
             //                    .transformEffect(.identity)
-            
+
             Button {
                 shouldShowTip.toggle()
             } label: {
@@ -65,7 +66,7 @@ private extension ContentView {
             }.buttonStyle(.plain)
         }
     }
-    
+
     var foodDetailView: some View {
         VStack {
             if shouldShowTip {
@@ -75,10 +76,10 @@ private extension ContentView {
                         Text("脂肪").font(.headline)
                         Text("碳水").font(.headline)
                     }.frame(minWidth: 60)
-                    
+
                     Divider().gridCellUnsizedAxes(.horizontal)
                         .padding(.horizontal, -10)
-                    
+
                     GridRow {
                         Text("\(selectedFood!.protein.formatted()) g").font(.headline)
                         Text("\(selectedFood!.fat.formatted()) g").font(.headline)
@@ -96,20 +97,20 @@ private extension ContentView {
         .border(.green)
         .clipped()
     }
-    
+
     @ViewBuilder var FoodInfoView: some View {
         if selectedFood != .none {
             foodNameView
-            
+
             Text("热量 \(selectedFood!.calorie, specifier: "%.0f") 大卡")
                 .font(.headline)
-            
+
             foodDetailView
         } else {
             EmptyView()
         }
     }
-    
+
     var confirmBtn: some View {
         Button {
 //                            withAnimation{

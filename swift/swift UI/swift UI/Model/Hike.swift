@@ -8,7 +8,6 @@
 import Foundation
 
 struct Hike: Codable, Hashable, Identifiable {
-     
     var id: Int
     var name: String
     var distance: Double

@@ -1,12 +1,12 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A view that presents a map of a landmark.
-*/
+ Abstract:
+ A view that presents a map of a landmark.
+ */
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 struct MapView: View {
     var coordinate: CLLocationCoordinate2D

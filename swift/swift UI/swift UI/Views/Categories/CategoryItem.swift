@@ -25,7 +25,6 @@ struct CategoryItem: View {
     }
 }
 
-
 struct CategoryItem_Previews: PreviewProvider {
     static var previews: some View {
         CategoryItem(landmark: ModelData().landmarks[0])

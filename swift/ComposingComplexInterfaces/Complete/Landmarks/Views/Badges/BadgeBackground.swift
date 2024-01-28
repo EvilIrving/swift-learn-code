@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A view that displays the background of a badge.
-*/
+ Abstract:
+ A view that displays the background of a badge.
+ */
 
 import SwiftUI
 
@@ -24,7 +24,7 @@ struct BadgeBackground: View {
                     )
                 )
 
-                HexagonParameters.segments.forEach { segment in
+                for segment in HexagonParameters.segments {
                     path.addLine(
                         to: CGPoint(
                             x: width * segment.line.x + xOffset,
@@ -52,6 +52,7 @@ struct BadgeBackground: View {
         }
         .aspectRatio(1, contentMode: .fit)
     }
+
     static let gradientStart = Color(red: 239.0 / 255, green: 120.0 / 255, blue: 221.0 / 255)
     static let gradientEnd = Color(red: 239.0 / 255, green: 172.0 / 255, blue: 120.0 / 255)
 }

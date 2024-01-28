@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A single line in the graph.
-*/
+ Abstract:
+ A single line in the graph.
+ */
 
 import SwiftUI
 
@@ -36,7 +36,8 @@ struct GraphCapsule_Previews: PreviewProvider {
             index: 0,
             color: .blue,
             height: 150,
-            range: 10..<50,
-            overallRange: 0..<100)
+            range: 10 ..< 50,
+            overallRange: 0 ..< 100
+        )
     }
 }

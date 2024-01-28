@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-The top-level definition of the Landmarks app.
-*/
+ Abstract:
+ The top-level definition of the Landmarks app.
+ */
 
 import SwiftUI
 

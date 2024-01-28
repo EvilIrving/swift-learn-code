@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A view that summarizes a profile.
-*/
+ Abstract:
+ A view that summarizes a profile.
+ */
 
 import SwiftUI
 
@@ -18,7 +18,7 @@ struct ProfileSummary: View {
                     .bold()
                     .font(.title)
 
-                Text("Notifications: \(profile.prefersNotifications ? "On": "Off" )")
+                Text("Notifications: \(profile.prefersNotifications ? "On" : "Off")")
                 Text("Seasonal Photos: \(profile.seasonalPhoto.rawValue)")
                 Text("Goal Date: ") + Text(profile.goalDate, style: .date)
 

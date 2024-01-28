@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A view showing a list of landmarks.
-*/
+ Abstract:
+ A view showing a list of landmarks.
+ */
 
 import SwiftUI
 
@@ -13,7 +13,7 @@ struct LandmarkList: View {
 
     var filteredLandmarks: [Landmark] {
         modelData.landmarks.filter { landmark in
-            (!showFavoritesOnly || landmark.isFavorite)
+            !showFavoritesOnly || landmark.isFavorite
         }
     }
 

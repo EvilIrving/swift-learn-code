@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct OverDialog: View {
-    @Binding var isShowing:Bool
+    @Binding var isShowing: Bool
     var body: some View {
         let me = Resume.shared
         VStack {
-            
-            HStack() {
+            HStack {
                 Image(systemName: "phone")
                     .resizable().aspectRatio(contentMode: .fit)
                     .foregroundColor(.white)
@@ -23,8 +22,8 @@ struct OverDialog: View {
                     .onTapGesture {
                         openUrl(me.phoneUrl)
                     }
-                
-                ForEach(me.socialMedia, id:\.name) { social in
+
+                ForEach(me.socialMedia, id: \.name) { social in
                     Image(social.name.lowercased(), label: Text(social.name))
                         .resizable().aspectRatio(contentMode: .fit)
                         .padding(10)
@@ -32,22 +31,21 @@ struct OverDialog: View {
                             openUrl(social.url)
                         }
                 }
-            }.frame(maxWidth: .infinity,alignment: .center)
-            
+            }.frame(maxWidth: .infinity, alignment: .center)
+
             Text("取消").font(.title2).bold()
                 .foregroundColor(.secondary)
                 .onTapGesture {
                     isShowing = false
                 }
-             
+
         }.padding()
             .background(RoundedRectangle(cornerRadius: 10)).foregroundColor(.white)
             .padding()
-        
     }
-    
-    func openUrl(_ url:String) {
-        if UIApplication.shared.canOpenURL(URL(string: url)!){
+
+    func openUrl(_ url: String) {
+        if UIApplication.shared.canOpenURL(URL(string: url)!) {
             UIApplication.shared.open(URL(string: url)!)
             return
         }

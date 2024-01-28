@@ -15,12 +15,11 @@ struct UnsizedAxesView: View {
                     Color.yellow
                         .gridCellUnsizedAxes(.vertical)
                         .gridCellUnsizedAxes(.horizontal)
-                    
+
                     Image("iu3").resizable().aspectRatio(contentMode: .fit)
                 }
-                
-                GridRow{
-                   
+
+                GridRow {
                     Image("iu2").resizable().aspectRatio(contentMode: .fit)
                         .gridCellUnsizedAxes(.vertical)
                     Image("iu").resizable().aspectRatio(contentMode: .fit)

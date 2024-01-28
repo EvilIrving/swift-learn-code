@@ -5,8 +5,8 @@
 //  Created by Actor on 2023/6/7.
 //
 
-import SwiftUI
 import MapKit
+import SwiftUI
 
 struct MapView: View {
     var coordinate: CLLocationCoordinate2D

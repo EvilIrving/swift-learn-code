@@ -1,9 +1,9 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+ See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-A representation of a hike.
-*/
+ Abstract:
+ A representation of a hike.
+ */
 
 import Foundation
 

@@ -25,7 +25,7 @@ struct BadgeSymbol: View {
                     CGPoint(x: middle - topWidth, y: topHeight - spacing),
                     CGPoint(x: middle, y: topHeight / 2 + spacing),
                     CGPoint(x: middle + topWidth, y: topHeight - spacing),
-                    CGPoint(x: middle, y: spacing)
+                    CGPoint(x: middle, y: spacing),
                 ])
 
                 path.move(to: CGPoint(x: middle, y: topHeight / 2 + spacing * 3))
@@ -34,7 +34,7 @@ struct BadgeSymbol: View {
                     CGPoint(x: spacing, y: height - spacing),
                     CGPoint(x: width - spacing, y: height - spacing),
                     CGPoint(x: middle + topWidth, y: topHeight + spacing),
-                    CGPoint(x: middle, y: topHeight / 2 + spacing * 3)
+                    CGPoint(x: middle, y: topHeight / 2 + spacing * 3),
                 ])
             }
             .fill(Self.symbolColor)

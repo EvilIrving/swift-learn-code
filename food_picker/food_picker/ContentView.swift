@@ -169,9 +169,15 @@ View 的大小类型
 Human Interface Guildlines
 1x 2x 3x 图片：Scale Factor
 
- 
-
- 
+ 1-6
+ 示范排版类型（hugging、neutral、expanding）的影响
+    资料修改
+    挑战：更换图片
+    实作更换图片
+    调整字体大小 & 行数
+    固定画面
+    Group
+    挑战：营养资讯画面
  ✨ 影片中提到的资讯
  萤幕大小和 Scale factor：https://iosref.com/res
   */

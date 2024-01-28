@@ -13,6 +13,12 @@ struct Food: Equatable {
     var fat: Double
     var protein: Double
     
+    
+//
+//    static func == (lhs: Self, rhs: Self) {
+//        lhs.name == rhs.name
+//    }
+
     static let examples = [
         Food(name: "漢堡", image: "🍔", calorie: 294, carb: 14, fat: 24, protein: 17),
         Food(name: "沙拉", image: "🥗", calorie: 89, carb: 20, fat: 0, protein: 1.8),

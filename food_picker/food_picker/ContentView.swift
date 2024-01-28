@@ -143,4 +143,35 @@ struct ContentView: View {
     需要明确动画运行的时机
  if 的使用时机
  条件运算子和 if else 的差别
+ 
+ 1-5
+什麽是 some View？
+調整器(Modifier)的重点整理
+ ·有的只對套用的那一個View做改變，有的會改變所有包含在裡面的View。
+ ·有些调整器會疊加，有些只套用第一個（不會被覆蓋）。
+ ·大部分的调整器都是在View的extension中，使用後會回传一個新的View。
+ ·调整器的位置很重要。
+
+SwiftUI 是如何排版的？
+ 1.上層畫面告诉下層畫面自己有多少空間，並询問他們需要多少空間。
+ 2.下層畫面回應自己想要的大小。它可以選擇任何大小，不一定要配合上層提供的大小决定。
+ 3.上層根據收集到的所有大小，根據自己的排版規则來决定他們的位置在哪。
+
+View 的大小类型
+        Hugging             Neutral                     Expanding
+ 知道自己需要的大小是多少   根據自己的子View决定         想要盡可能佔滿 所有空間
+         Text               VStack                      Color
+                            Button                  Image.resizable
+ x 轴和 y 轴的大小类型可以不一样, 比如:toggle的  x 轴是Expanding, y 轴是Neutral
+
+动态字体大小 Dynamic type
+    如何是自定Size就不能直接使用动态大小 或 搭配 @ScaleMetric 的 PropertyWrapper 使用
+Human Interface Guildlines
+1x 2x 3x 图片：Scale Factor
+
+ 
+
+ 
+ ✨ 影片中提到的资讯
+ 萤幕大小和 Scale factor：https://iosref.com/res
   */

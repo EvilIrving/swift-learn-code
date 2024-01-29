@@ -36,7 +36,7 @@ struct ContentView: View {
             // 不要普通的动画, 要 Q 弹
             .animation(.mySpring, value: showInfo)
             .animation(.myEase, value: selectedFood)
-        }.background(Color.bg2) // 不能直接.bg2 这里的参数是 conform to shapeStyle
+        }.background(.bg2)
     }
 }
 
@@ -323,7 +323,24 @@ extension ContentView {
     整理调整器
         分成不同文件
     设计后缀调整
+        使用 PropertyWrapper
 
+ 2-4 介绍有哪些 ShapeStyle、画面的图层、图层对动画的影响以及 ViewBuilder 的限制
+ 
+ShapeStyle 介绍
+    
+Leading & Trailing 的意思
+    文字开始和结束的方向
+
+从 ShapeStyle 直接存取顏色
+    extension
+强制画面使用最理想大小
+ .fixedSize
+画面的图层
+ZStack
+ZStack 中的动画限制: 
+ViewBuilder 的限制: 最多 10 个,超过 10 个可以包装起来
+Lazy View: Lazy 版本的 View 只有用户滑到的时候才会加载
    ✨ 影片中提到的资讯
    萤幕大小和 Scale factor：https://iosref.com/res
  */

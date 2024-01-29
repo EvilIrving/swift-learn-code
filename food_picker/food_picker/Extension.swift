@@ -15,7 +15,7 @@ extension View {
             .buttonBorderShape(.capsule)
     }
 
-    func roundedRectBackground(radius: CGFloat = 8, by shape: some ShapeStyle = Color.bg) -> some View {
+    func roundedRectBackground(radius: CGFloat = 8, by shape: some ShapeStyle = .bg) -> some View {
         background(RoundedRectangle(cornerRadius: radius)
             .foregroundStyle(shape))
     }
@@ -26,9 +26,14 @@ extension Animation {
     static let myEase = Animation.easeInOut(duration: 0.6)
 }
 
-extension Color {
-    static let bg = Color(.systemBackground)
-    static let bg2 = Color(.secondarySystemBackground)
+extension ShapeStyle where Self == Color {
+    static var bg: Color {
+        Color(.systemBackground)
+    }
+
+    static var bg2: Color {
+        Color(.secondarySystemBackground)
+    }
 }
 
 extension AnyTransition {

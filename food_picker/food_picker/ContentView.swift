@@ -45,8 +45,8 @@ struct ContentView: View {
 private extension ContentView {
     var foodImage: some View {
         Group {
-            if selectedFood != .none {
-                Text(selectedFood!.image)
+            if let selectedFood{
+                Text(selectedFood.image)
                     .font(.system(size: 200))
                     // 最小缩放因数
                     .minimumScaleFactor(0.1)
@@ -362,6 +362,6 @@ List 介绍
  Binding 介绍
  State & Binding 组合应用
  Environment 介绍
-   ✨ 影片中提到的资讯 
+   ✨ 影片中提到的资讯
    
  */

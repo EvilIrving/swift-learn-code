@@ -8,11 +8,11 @@
 import SwiftUI
 
 extension View {
-    func mainButtonStyle() -> some View {
+    func mainButtonStyle(shape: ButtonBorderShape = .capsule) -> some View {
 //       .buttonStyle(.borderedProminent) .就是 self.
         buttonStyle(.borderedProminent)
             .controlSize(.large)
-            .buttonBorderShape(.capsule)
+            .buttonBorderShape(shape)
     }
 
     func roundedRectBackground(radius: CGFloat = 8, by shape: some ShapeStyle = .bg) -> some View {
@@ -34,6 +34,8 @@ extension ShapeStyle where Self == Color {
     static var bg2: Color {
         Color(.secondarySystemBackground)
     }
+
+    static var groupBg: Color { Color(.secondarySystemBackground) }
 }
 
 extension AnyTransition {

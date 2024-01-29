@@ -21,7 +21,8 @@ import SwiftUI
 struct food_pickerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            ListView()
         }
     }
 }

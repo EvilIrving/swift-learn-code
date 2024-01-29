@@ -4,16 +4,17 @@
 //
 //  Created by Jane Chao on 22/10/09.
 //
+import Foundation
 
-
-
-struct Food: Equatable {
+struct Food: Equatable, Identifiable {
     var name: String
     var image: String
     @Unit("大卡") var calorie: Double = .zero
     @Unit("g") var carb: Double = .zero
     @Unit("g") var fat: Double = .zero
     @Unit("g") var protein: Double = .zero
+
+    let id = UUID()
 
 //    init(name: String, image: String, calorie: Double, carb: Double, fat: Double, protein: Double) {
 //        self.name = name

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @Environment(\.editMode) var editMode
+    @Environment(\.dynamicTypeSize) var textSize
     @State var selectedFoods = Set<Food.ID>()
     @State var showInfo: Bool = false
     @State var foods = Food.examples
@@ -28,33 +29,43 @@ struct ListView: View {
         .background(.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFloatButton)
         .sheet(isPresented: .constant(true), content: {
-            let food: Food = foods.first!
-            HStack {
+            let food: Food = foods[0]
+            let shouldUseVstack = textSize.isAccessibilitySize || food.image.count > 1
+
+            let layout = shouldUseVstack ? AnyLayout(VStackLayout(spacing: 30)) : AnyLayout(HStackLayout(spacing: 30))
+
+            layout {
                 Text(food.image)
                     .font(.system(size: 100))
                     // 最小缩放因数
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
-                Grid {
-                    GridRow {
-                        Text("热量")
-                        Text("蛋白质")
-                        Text("碳水")
-                        Text("脂肪")
-                    }.frame(minWidth: 60)
 
-                    Divider()
+                Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                    GridRow {
+                        Text("热量").gridCellAnchor(.leading)
+                        Text("\(food.$calorie)").gridCellAnchor(.trailing)
+                    }
 
                     GridRow {
-                        Text("\(food.$calorie)")
-                        Text("\(food.$protein)")
-                        Text("\(food.$fat)")
-                        Text("\(food.$carb)")
+                        Text("蛋白质").gridCellAnchor(.leading)
+                        Text("\(food.$protein)").gridCellAnchor(.trailing)
+                    }
+
+                    GridRow {
+                        Text("脂肪").gridCellAnchor(.leading)
+                        Text("\(food.$fat)").gridCellAnchor(.trailing)
+                    }
+
+                    GridRow {
+                        Text("谭树").gridCellAnchor(.leading)
+                        Text("\(food.$carb)").gridCellAnchor(.trailing)
                     }
                 }
             }
             .padding()
             .presentationDetents([.medium])
+            .environment(\.dynamicTypeSize, .accessibility3)
         })
     }
 }

@@ -6,158 +6,180 @@
 //
 
 import SwiftUI
-
 struct ContentView: View {
-    let food = Food.examples
     // @State
     @State private var selectedFood: Food?
     @State private var showInfo = false
+
+    let food = Food.examples
+
     // body回传一个View
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
-                Group {
-                    if selectedFood != .none {
-                        Text(selectedFood!.image)
-                            .font(.system(size: 200))
-                            // 最小缩放因数
-                            .minimumScaleFactor(0.1)
-                            .lineLimit(1)
-                    } else {
-                        Image("dinner")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    }
-                }.frame(height: 250)
+                foodImage
 
-                Text("今天吃什么?")
-                    .bold()
+                Text("今天吃什么?").bold()
 
-                //            if selectedFood != .none {
-                if let selectedFood = selectedFood {
-                    HStack {
-                        Text(selectedFood.name)
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundStyle(.green)
-                            .id(selectedFood.name)
-                            // scale 可以 结合其他动画
-                            //     .transition(.scale.combined(with: .opacity))
-
-                            //  自定义进场和离场动画
-                            .transition(.asymmetric(
-                                insertion: .opacity
-                                    .animation(
-                                        .easeIn(duration: 0.5)
-                                            .delay(0.2)),
-                                removal: .opacity
-                                    .animation(
-                                        .easeOut(duration: 0.4))))
-
-                        Button {
-                            showInfo.toggle()
-                        } label: {
-                            Image(systemName: "info.circle.fill").foregroundColor(.secondary)
-                        }.buttonStyle(.plain)
-                    }
-                    Text("热量 \(selectedFood.calorie.formatted(.number)) 大卡")
-
-                    // 限制动画显示时 跳过 热量大卡 的文字
-                    // 增加一个 VStack
-
-                    VStack {
-                        if showInfo {
-                            Grid(horizontalSpacing: 12, verticalSpacing: 12) {
-                                GridRow {
-                                    Text("蛋白质")
-                                    Text("脂肪")
-                                    Text("碳水")
-                                }.frame(minWidth: 60)
-                                //                                .gridCellAnchor(.trailing)
-
-                                Divider().gridCellUnsizedAxes(.horizontal).padding(.horizontal, -10) // 垂直或水平是根据所处位置判断得出
-
-                                GridRow {
-                                    Text("\(selectedFood.protein.formatted(.number))g")
-                                    Text("\(selectedFood.fat.formatted(.number))g")
-                                    Text("\(selectedFood.carb.formatted(.number))g")
-                                }
-                            }
-                            .font(.title3)
-                            .padding(.horizontal)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(.systemBackground)))
-
-                            // ipad上淡入淡出的效果不满意, 想要更有存在感
-                            .transition(.move(edge: .top).combined(with: .opacity))
-
-                            //                        HStack {
-                            //                            VStack(spacing: 12) {
-                            //                                Text("蛋白质").font(.title2)
-                            //                                Text("\(selectedFood.protein.formatted(.number))g")
-                            //                            }
-                            //
-                            //                            Divider().frame(width: 1).padding(.horizontal)
-                            //
-                            //                            VStack(spacing: 12) {
-                            //                                Text("脂肪").font(.title2)
-                            //                                Text("\(selectedFood.fat.formatted(.number))g")
-                            //                            }
-                            //
-                            //                            Divider().frame(width: 1).padding(.horizontal)
-                            //
-                            //                            VStack(spacing: 12) {
-                            //                                Text("碳水").font(.title2)
-                            //                                Text("\(selectedFood.carb.formatted(.number))g")
-                            //                            }
-                            //                        }
-                            //                        .padding(.horizontal)
-                            //                        .padding()
-                            //                        .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(.systemBackground)))
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .clipped() // 裁剪空间
-//                    .border(.black)
-                }
+                selectedFoodInfoView
 
                 // Color.clear // Color 是 expanding 的
                 Spacer().layoutPriority(1) // 排版优先级
 
-                Button {
-                    withAnimation {
-                        selectedFood = food.shuffled().first!
-                    }
-                } label: {
-                    Text(selectedFood == .none ? "告诉我" : "换一个")
-                        .frame(width: 150)
-                        .animation(.none, value: selectedFood)
-                        //  两种方式效果一样, transformEffect -> 针对文字用
-                        //  .transformEffect(.identity)
-                        .transformEffect(.init(translationX: 0, y: 0)) // 设定位置移动, 变相强制动画按照变形去做
-                }
-                .buttonStyle(.borderedProminent) // Prominent 重要的
-                .padding(.bottom, -15)
-
-                Button(role: .destructive) {
-                    withAnimation {
-                        selectedFood = .none
-                        showInfo = false
-                    }
-                } label: {
-                    Text("重置").frame(width: 150)
-                }.buttonStyle(.bordered)
+                selectFoodButton
+                resetButton
             }
             .padding()
             .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.height - 100) // UIScreen().bounds 设备屏幕尺寸
             .font(.title)
-            .controlSize(.large)
-            .buttonBorderShape(.capsule)
-//            .animation(.easeInOut,value: showInfo)
+            .mainButtonStyle()
             // 不要普通的动画, 要 Q 弹
-            .animation(.spring(dampingFraction: 0.55), value: showInfo)
-            .animation(.easeInOut(duration: 0.6), value: selectedFood)
-        }.background(Color(.secondarySystemBackground))
+            .animation(.mySpring, value: showInfo)
+            .animation(.myEase, value: selectedFood)
+        }.background(Color.bg2) // 不能直接.bg2 这里的参数是 conform to shapeStyle
+    }
+}
+
+// MARK: - SubViews
+
+private extension ContentView {
+    var foodImage: some View {
+        Group {
+            if selectedFood != .none {
+                Text(selectedFood!.image)
+                    .font(.system(size: 200))
+                    // 最小缩放因数
+                    .minimumScaleFactor(0.1)
+                    .lineLimit(1)
+            } else {
+                Image("dinner")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+        }.frame(height: 250)
+    }
+
+    var foodNameView: some View {
+        HStack {
+            Text(selectedFood!.name)
+                .font(.largeTitle)
+                .bold()
+                .foregroundStyle(.green)
+                .id(selectedFood!.name)
+                // scale 可以 结合其他动画
+                //     .transition(.scale.combined(with: .opacity))
+
+                //  自定义进场和离场动画
+                .transition(.delayInsertionOpacity)
+
+            Button {
+                showInfo.toggle()
+            } label: {
+                Image(systemName: "info.circle.fill").foregroundColor(.secondary)
+            }.buttonStyle(.plain)
+        }
+    }
+
+    var foodDetailView: some View {
+        // 限制动画显示时 跳过 热量大卡 的文字
+        // 增加一个 VStack
+        VStack {
+            if showInfo {
+                Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                    GridRow {
+                        Text("蛋白质")
+                        Text("脂肪")
+                        Text("碳水")
+                    }.frame(minWidth: 60)
+                    //                                .gridCellAnchor(.trailing)
+
+                    Divider().gridCellUnsizedAxes(.horizontal).padding(.horizontal, -10) // 垂直或水平是根据所处位置判断得出
+
+                    GridRow {
+                        // 数字的格式化
+                        // 使用方法 buildNunberText 返回格式化好的文字
+                        // 在 Food 定义新的String计算属性 如 proteinString 返回 带单位的值
+                        // 使用 PropertyWrapper 的投射属性
+                        Text("\(selectedFood!.$protein)")
+                        Text("\(selectedFood!.$fat)")
+                        Text("\(selectedFood!.$carb)")
+                    }
+                }
+                .font(.title3)
+                .padding(.horizontal)
+                .padding()
+                .roundedRectBackground()
+
+                // ipad上淡入淡出的效果不满意, 想要更有存在感
+                .transition(.moveUpWithOpacity)
+
+                //                        HStack {
+                //                            VStack(spacing: 12) {
+                //                                Text("蛋白质").font(.title2)
+                //                                Text("\(selectedFood.protein.formatted(.number))g")
+                //                            }
+                //
+                //                            Divider().frame(width: 1).padding(.horizontal)
+                //
+                //                            VStack(spacing: 12) {
+                //                                Text("脂肪").font(.title2)
+                //                                Text("\(selectedFood.fat.formatted(.number))g")
+                //                            }
+                //
+                //                            Divider().frame(width: 1).padding(.horizontal)
+                //
+                //                            VStack(spacing: 12) {
+                //                                Text("碳水").font(.title2)
+                //                                Text("\(selectedFood.carb.formatted(.number))g")
+                //                            }
+                //                        }
+                //                        .padding(.horizontal)
+                //                        .padding()
+                //                        .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(.systemBackground)))
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .clipped() // 裁剪空间
+//                    .border(.black)
+    }
+
+    // ViewBuilder作用
+    @ViewBuilder
+    var selectedFoodInfoView: some View {
+        //            if selectedFood != .none {
+        if let selectedFood = selectedFood {
+            foodNameView
+            Text("热量 \(selectedFood.$calorie)")
+            foodDetailView
+        }
+    }
+
+    var selectFoodButton: some View {
+        Button {
+            withAnimation {
+                selectedFood = food.shuffled().first!
+            }
+        } label: {
+            Text(selectedFood == .none ? "告诉我" : "换一个")
+                .frame(width: 150)
+                .animation(.none, value: selectedFood)
+                //  两种方式效果一样, transformEffect -> 针对文字用
+                //  .transformEffect(.identity)
+                .transformEffect(.init(translationX: 0, y: 0)) // 设定位置移动, 变相强制动画按照变形去做
+        }
+        .buttonStyle(.borderedProminent) // Prominent 重要的
+        .padding(.bottom, -15)
+    }
+
+    var resetButton: some View {
+        Button(role: .destructive) {
+            withAnimation {
+                selectedFood = .none
+                showInfo = false
+            }
+        } label: {
+            Text("重置").frame(width: 150)
+        }.buttonStyle(.bordered)
     }
 }
 
@@ -288,6 +310,19 @@ extension ContentView {
    使用 SwiftUI 的心态(?)
    设定显示营养资讯的按钮
    有弹力的动画 spring
+
+ 2-3 refactor
+    调整属性
+        showInfo -> shouldShowInfo
+    整理 View 的架构
+        body 中的 view 放置解释画面有哪些部分, 每个部分都可以单独抽出去
+    使用 ViewBuilder
+    整理 struct
+        使用 extension 封装动画 颜色 方法 圆角
+
+    整理调整器
+        分成不同文件
+    设计后缀调整
 
    ✨ 影片中提到的资讯
    萤幕大小和 Scale factor：https://iosref.com/res

@@ -5,19 +5,28 @@
 //  Created by Jane Chao on 22/10/09.
 //
 
+
+
 struct Food: Equatable {
     var name: String
     var image: String
-    var calorie: Double
-    var carb: Double
-    var fat: Double
-    var protein: Double
-    
-    
-//
-//    static func == (lhs: Self, rhs: Self) {
-//        lhs.name == rhs.name
+    @Unit("大卡") var calorie: Double = .zero
+    @Unit("g") var carb: Double = .zero
+    @Unit("g") var fat: Double = .zero
+    @Unit("g") var protein: Double = .zero
+
+//    init(name: String, image: String, calorie: Double, carb: Double, fat: Double, protein: Double) {
+//        self.name = name
+//        self.image = image
+//        _fat = .init(wrappedValue: fat, unit: "g")
+//        _calorie = .init(wrappedValue: calorie, unit: "大卡")
+//        _carb = .init(wrappedValue: carb, unit: "g")
+//        _protein = .init(wrappedValue: protein, unit: "g")
 //    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.name == rhs.name
+    }
 
     static let examples = [
         Food(name: "漢堡", image: "🍔", calorie: 294, carb: 14, fat: 24, protein: 17),

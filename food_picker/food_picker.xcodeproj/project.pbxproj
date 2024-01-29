@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A18AF242B66B5D500646F4D /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A18AF232B66B5D500646F4D /* Food.swift */; };
+		1A18AF262B67478800646F4D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A18AF252B67478800646F4D /* Extension.swift */; };
+		1A18AF282B6750A300646F4D /* UnitWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A18AF272B6750A300646F4D /* UnitWrapper.swift */; };
 		1ABAAF8A2B6620F1006DA74F /* food_pickerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABAAF892B6620F1006DA74F /* food_pickerApp.swift */; };
 		1ABAAF8C2B6620F1006DA74F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABAAF8B2B6620F1006DA74F /* ContentView.swift */; };
 		1ABAAF8E2B6620F3006DA74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABAAF8D2B6620F3006DA74F /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		1A18AF232B66B5D500646F4D /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		1A18AF252B67478800646F4D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		1A18AF272B6750A300646F4D /* UnitWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitWrapper.swift; sourceTree = "<group>"; };
 		1ABAAF862B6620F1006DA74F /* food_picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = food_picker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABAAF892B6620F1006DA74F /* food_pickerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = food_pickerApp.swift; sourceTree = "<group>"; };
 		1ABAAF8B2B6620F1006DA74F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 				1ABAAF8B2B6620F1006DA74F /* ContentView.swift */,
 				1ABAAF8D2B6620F3006DA74F /* Assets.xcassets */,
 				1ABAAF8F2B6620F3006DA74F /* Preview Content */,
+				1A18AF252B67478800646F4D /* Extension.swift */,
+				1A18AF272B6750A300646F4D /* UnitWrapper.swift */,
 			);
 			path = food_picker;
 			sourceTree = "<group>";
@@ -143,6 +149,8 @@
 				1ABAAF8C2B6620F1006DA74F /* ContentView.swift in Sources */,
 				1ABAAF8A2B6620F1006DA74F /* food_pickerApp.swift in Sources */,
 				1A18AF242B66B5D500646F4D /* Food.swift in Sources */,
+				1A18AF282B6750A300646F4D /* UnitWrapper.swift in Sources */,
+				1A18AF262B67478800646F4D /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

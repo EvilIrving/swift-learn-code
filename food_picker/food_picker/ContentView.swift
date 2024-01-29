@@ -338,9 +338,30 @@ Leading & Trailing 的意思
  .fixedSize
 画面的图层
 ZStack
-ZStack 中的动画限制: 
+ZStack 中的动画限制:
 ViewBuilder 的限制: 最多 10 个,超过 10 个可以包装起来
 Lazy View: Lazy 版本的 View 只有用户滑到的时候才会加载
-   ✨ 影片中提到的资讯
-   萤幕大小和 Scale factor：https://iosref.com/res
+ 
+ 3-1
+ 使用 ForEach 和 List，搭配 Collection 来动态地产生多个画面的方法以及相关的调整器（View 的迴圈）
+ 
+ ForEach 根据 ID 动态产生和管理画面的 View
+ Data
+ Random
+ 
+ForEach 介绍
+List 介绍
+移动、删除
+选择
+ 
+ 3-2 属性包装
+ 属性包装：State、Binding、Environment。这三个属性包装都和资料传递有关，是 SwiftUI 中 Value Type 资料传递与画面更新的基础。
+ 
+ Property Wrapper 複习
+ State 介绍
+ Binding 介绍
+ State & Binding 组合应用
+ Environment 介绍
+   ✨ 影片中提到的资讯 
+   
  */

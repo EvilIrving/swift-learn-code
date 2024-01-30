@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ListView: View {
+    /// 环境变量
     @Environment(\.editMode) var editMode
     @Environment(\.dynamicTypeSize) var textSize
+
     @State var selectedFoods = Set<Food.ID>()
     @State var showInfo: Bool = false
     @State var foods = Food.examples
@@ -19,48 +21,32 @@ struct ListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             titleBar
-
-            List($foods, editActions: .all, selection: $selectedFoods) { $food in
-                Text(food.name)
-            }
-            .listStyle(.plain)
-            .padding(.horizontal)
+            // (存取 binding )
+            List($foods, editActions: .all, selection: $selectedFoods) { $food in Text(food.name) }
+                .listStyle(.plain)
+                .padding(.horizontal)
         }
         .background(.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFloatButton)
         .sheet(isPresented: .constant(true), content: {
-            let food: Food = foods[0]
+            let food: Food = foods[4]
+           
             let shouldUseVstack = textSize.isAccessibilitySize || food.image.count > 1
 
             let layout = shouldUseVstack ? AnyLayout(VStackLayout(spacing: 30)) : AnyLayout(HStackLayout(spacing: 30))
 
             layout {
+                Text("\(textSize ?"true" : "false")")
                 Text(food.image)
                     .font(.system(size: 100))
-                    // 最小缩放因数
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
 
                 Grid(horizontalSpacing: 12, verticalSpacing: 12) {
-                    GridRow {
-                        Text("热量").gridCellAnchor(.leading)
-                        Text("\(food.$calorie)").gridCellAnchor(.trailing)
-                    }
-
-                    GridRow {
-                        Text("蛋白质").gridCellAnchor(.leading)
-                        Text("\(food.$protein)").gridCellAnchor(.trailing)
-                    }
-
-                    GridRow {
-                        Text("脂肪").gridCellAnchor(.leading)
-                        Text("\(food.$fat)").gridCellAnchor(.trailing)
-                    }
-
-                    GridRow {
-                        Text("谭树").gridCellAnchor(.leading)
-                        Text("\(food.$carb)").gridCellAnchor(.trailing)
-                    }
+                    buildFoodTextView(text: "热量", value: food.$calorie)
+                    buildFoodTextView(text: "蛋白质", value: food.$protein)
+                    buildFoodTextView(text: "脂肪", value: food.$fat)
+                    buildFoodTextView(text: "碳水", value: food.$carb)
                 }
             }
             .padding()
@@ -134,9 +120,33 @@ private extension ListView {
         //                addButton
         //            }
     }
+
+//    @ViewBuilder
+    func buildFoodTextView(text: String, value: String) -> some View {
+        GridRow {
+            Text(text).gridCellAnchor(.leading)
+            Text("\(value)").gridCellAnchor(.trailing)
+        }
+    }
 }
 
 #Preview {
     ListView()
 //        .environment(\.editMode, .constant(.active))
 }
+
+/*
+
+ > UUID
+ > 用 List 建立食物清單
+ > Label
+ > EditButton
+ > 懸浮按鈕 FloatingButton
+ > SafeAreaInset
+ > 建立刪除按鈕
+ > 調整按鈕轉場動畫
+ > Sheet
+ > AnyLayout
+ > 程式碼部分
+
+ */

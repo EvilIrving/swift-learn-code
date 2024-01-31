@@ -36,7 +36,6 @@ struct ListView: View {
             let layout = shouldUseVstack ? AnyLayout(VStackLayout(spacing: 30)) : AnyLayout(HStackLayout(spacing: 30))
 
             layout {
-                Text("\(textSize ?"true" : "false")")
                 Text(food.image)
                     .font(.system(size: 100))
                     .minimumScaleFactor(0.5)

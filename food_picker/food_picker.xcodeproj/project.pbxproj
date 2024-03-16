@@ -16,6 +16,7 @@
 		1ABAAF8C2B6620F1006DA74F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABAAF8B2B6620F1006DA74F /* ContentView.swift */; };
 		1ABAAF8E2B6620F3006DA74F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABAAF8D2B6620F3006DA74F /* Assets.xcassets */; };
 		1ABAAF912B6620F3006DA74F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ABAAF902B6620F3006DA74F /* Preview Assets.xcassets */; };
+		1AFAB0612BA58FA900D91059 /* FoodForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAB0602BA58FA900D91059 /* FoodForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		1ABAAF8B2B6620F1006DA74F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1ABAAF8D2B6620F3006DA74F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ABAAF902B6620F3006DA74F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1AFAB0602BA58FA900D91059 /* FoodForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			children = (
 				1ABAAF892B6620F1006DA74F /* food_pickerApp.swift */,
 				1A18AF2B2B67A01000646F4D /* ListView.swift */,
+				1AFAB0602BA58FA900D91059 /* FoodForm.swift */,
 				1A18AF232B66B5D500646F4D /* Food.swift */,
 				1ABAAF8B2B6620F1006DA74F /* ContentView.swift */,
 				1ABAAF8D2B6620F3006DA74F /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 				1A18AF242B66B5D500646F4D /* Food.swift in Sources */,
 				1A18AF2C2B67A01000646F4D /* ListView.swift in Sources */,
 				1A18AF282B6750A300646F4D /* UnitWrapper.swift in Sources */,
+				1AFAB0612BA58FA900D91059 /* FoodForm.swift in Sources */,
 				1A18AF2A2B67699500646F4D /* ShapeStyleView.swift in Sources */,
 				1A18AF262B67478800646F4D /* Extension.swift in Sources */,
 			);

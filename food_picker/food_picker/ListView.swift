@@ -12,6 +12,9 @@ struct ListView: View {
     @Environment(\.editMode) var editMode
     @Environment(\.dynamicTypeSize) var textSize
 
+    @State var foodDetailSheetHeight: CGFloat = FoodDetailSheetHeightKey.defaultValue
+    @State var shouldShowSheet = false
+
     @State var selectedFoods = Set<Food.ID>()
     @State var showInfo: Bool = false
     @State var foods = Food.examples
@@ -22,15 +25,22 @@ struct ListView: View {
         VStack(alignment: .leading) {
             titleBar
             // (存取 binding )
-            List($foods, editActions: .all, selection: $selectedFoods) { $food in Text(food.name) }
-                .listStyle(.plain)
-                .padding(.horizontal)
+            List($foods, editActions: .all, selection: $selectedFoods) { $food in
+                Text(food.name).padding(.vertical, 10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        shouldShowSheet = true
+                    }
+            }
+            .listStyle(.plain)
+            .padding(.horizontal)
         }
         .background(.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFloatButton)
-        .sheet(isPresented: .constant(true), content: {
-            let food: Food = foods[4]
-           
+        .sheet(isPresented: $shouldShowSheet, content: {
+            let food: Food = selectedFoods
+
             let shouldUseVstack = textSize.isAccessibilitySize || food.image.count > 1
 
             let layout = shouldUseVstack ? AnyLayout(VStackLayout(spacing: 30)) : AnyLayout(HStackLayout(spacing: 30))
@@ -38,7 +48,7 @@ struct ListView: View {
             layout {
                 Text(food.image)
                     .font(.system(size: 100))
-                    .minimumScaleFactor(0.5)
+                    .minimumScaleFactor(shouldUseVstack ? 1 : 0.5)
                     .lineLimit(1)
 
                 Grid(horizontalSpacing: 12, verticalSpacing: 12) {
@@ -49,9 +59,28 @@ struct ListView: View {
                 }
             }
             .padding()
-            .presentationDetents([.medium])
+            .padding(.vertical)
+            .overlay {
+                GeometryReader { proxy in
+                    Color.clear.preference(key: FoodDetailSheetHeightKey.self, value: proxy.size.height)
+                }
+            }
+            .onPreferenceChange(FoodDetailSheetHeightKey.self) {
+                foodDetailSheetHeight = $0
+            }
+            .presentationDetents([.height(foodDetailSheetHeight)])
             .environment(\.dynamicTypeSize, .accessibility3)
         })
+    }
+}
+
+private extension ListView {
+    struct FoodDetailSheetHeightKey: PreferenceKey {
+        static var defaultValue: CGFloat = 300
+
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = nextValue()
+        }
     }
 }
 
@@ -106,7 +135,7 @@ private extension ListView {
             HStack {
                 Spacer()
                 addButton
-                    .scaleEffect(isEditing ? 0 : 1)
+                    .scaleEffect(isEditing ? 0.00001 : 1)
                     //                        .transition(.scale.combined(with: .opacity).animation(.easeInOut))
                     .opacity(isEditing ? 0 : 1)
                     .animation(.easeInOut, value: isEditing)

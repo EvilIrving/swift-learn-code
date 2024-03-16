@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2F00792B8EF49400899DB0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2F00782B8EF49400899DB0 /* Data.swift */; };
+		1A2F007C2B916E7900899DB0 /* compassion-exercise-8mins.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A2F007B2B916E7900899DB0 /* compassion-exercise-8mins.mp3 */; };
 		1AB43A022B8C6FD500596921 /* meowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB43A012B8C6FD500596921 /* meowApp.swift */; };
 		1AB43A042B8C6FD500596921 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB43A032B8C6FD500596921 /* ContentView.swift */; };
 		1AB43A062B8C6FD600596921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB43A052B8C6FD600596921 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A2F00782B8EF49400899DB0 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		1A2F007B2B916E7900899DB0 /* compassion-exercise-8mins.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "compassion-exercise-8mins.mp3"; sourceTree = "<group>"; };
 		1AB439FE2B8C6FD500596921 /* meow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AB43A012B8C6FD500596921 /* meowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meowApp.swift; sourceTree = "<group>"; };
 		1AB43A032B8C6FD500596921 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +36,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2F007A2B916E4F00899DB0 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F007B2B916E7900899DB0 /* compassion-exercise-8mins.mp3 */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		1AB439F52B8C6FD500596921 = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +63,12 @@
 		1AB43A002B8C6FD500596921 /* meow */ = {
 			isa = PBXGroup;
 			children = (
+				1A2F007A2B916E4F00899DB0 /* resources */,
 				1AB43A012B8C6FD500596921 /* meowApp.swift */,
 				1AB43A032B8C6FD500596921 /* ContentView.swift */,
 				1AB43A052B8C6FD600596921 /* Assets.xcassets */,
 				1AB43A072B8C6FD600596921 /* Preview Content */,
+				1A2F00782B8EF49400899DB0 /* Data.swift */,
 			);
 			path = meow;
 			sourceTree = "<group>";
@@ -127,6 +141,7 @@
 			files = (
 				1AB43A092B8C6FD600596921 /* Preview Assets.xcassets in Resources */,
 				1AB43A062B8C6FD600596921 /* Assets.xcassets in Resources */,
+				1A2F007C2B916E7900899DB0 /* compassion-exercise-8mins.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB43A042B8C6FD500596921 /* ContentView.swift in Sources */,
+				1A2F00792B8EF49400899DB0 /* Data.swift in Sources */,
 				1AB43A022B8C6FD500596921 /* meowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

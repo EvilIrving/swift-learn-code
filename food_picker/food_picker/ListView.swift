@@ -39,7 +39,7 @@ struct ListView: View {
         .background(.groupBg)
         .safeAreaInset(edge: .bottom, content: buildFloatButton)
         .sheet(isPresented: $shouldShowSheet, content: {
-            let food: Food = selectedFoods
+            let food: Food = foods[4]
 
             let shouldUseVstack = textSize.isAccessibilitySize || food.image.count > 1
 
